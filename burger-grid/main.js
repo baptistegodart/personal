@@ -16,6 +16,7 @@ function showCredits() {
 function setup() {
     createCanvas(windowWidth, windowHeight)
     angleMode(DEGREES)
+    rectMode(CENTER)
     showCredits()
 
     initStrate()
@@ -31,6 +32,8 @@ function draw() {
     background(255)
     noStroke()
 
+    translate(width/2.4, height/nStrates/2)
+
     for(let i=0; i<nStrates; i++){
 
         const strateWidth = width/1.2
@@ -40,7 +43,7 @@ function draw() {
         const posY = i*strateHeight
 
         drawBurger(posX, posY, strateWidth, strateHeight, i)
-        drawGrid(posX, posY, strateWidth, strateHeight)
+        // drawGrid(posX, posY, strateWidth, strateHeight)
 
     }
 
@@ -77,5 +80,5 @@ function initStrate() {
 function drawBurger(x, y, w, h, index) {
 
     strates[index].draw(x, y, w, h)
-
+ 
 }

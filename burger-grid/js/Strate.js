@@ -13,23 +13,23 @@ class Strate{
             TOMATO:5
         }
 
-        this.type = this.selectGarnitureType(type)
+        this.type = this.selectStrateType(type)
 
         switch(this.type){
             case this.types.BREAD:
-                this.color = 'rgb(254, 224, 166)'
+                this.color = 'rgb(232, 198, 139)'
             break;
             case this.types.CHEESE:
-                this.color = 'yellow'
+                this.color = 'rgb(255, 231, 113)'
             break;
             case this.types.SALAD:
-                this.color = 'green'       
+                this.color = 'rgb(135, 223, 117)'       
             break;
             case this.types.STEAK:
-                this.color = 'brown'
+                this.color = 'rgb(134, 68, 45)'
             break;
             case this.types.TOMATO:
-                this.color = 'red'
+                this.color = 'rgb(233, 47, 59)'
             break;
         }
     }
@@ -47,7 +47,7 @@ class Strate{
         
     }
 
-    selectGarnitureType(type){
+    selectStrateType(type){
 
         let selectedType
 
