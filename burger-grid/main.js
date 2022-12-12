@@ -3,9 +3,11 @@
 let credit = `Code by :
 www.baptistegodart.ch`
 
-let nStrates = 10 // ! Include top & bottom bun
+let nStrates = 6 // ! Include top & bottom bun
 
 let strates = []
+
+let roundCornerValue = 100;
 let bread = 'bread'
 let garniture = 'garniture'
 
@@ -20,7 +22,7 @@ function setup() {
     showCredits()
 
     initStrate()
-    console.log(strates);
+    console.log(strates)
 }
 
 function windowResized() {
@@ -70,11 +72,12 @@ function initStrate() {
     for(let i=0; i<nStrates; i++){
 
         const strateType = i == 0 || i == nStrates-1 ? bread : garniture
-        const newStrate = new Strate(strateType)
+        const newStrate = new Strate(i, strateType)
 
         strates.push(newStrate)
 
     }
+    
 }
 
 function drawBurger(x, y, w, h, index) {
