@@ -3,7 +3,7 @@
 let credit = `Code by :
 www.baptistegodart.ch`
 
-let nStrates = 6 // ! Include top & bottom bun
+let nStrates = 7 // ! Include top & bottom bun
 let widthRatio = 2 // Strates width = width/widthRatio
 
 let strates = []
@@ -40,7 +40,7 @@ function draw() {
     noStroke()
     
     translate(width/(2*widthRatio), height/nStrates/2)
-    // drawGrid()
+    drawGrid()
 
     for(let i=0; i<strateCounter; i++){
     // for(let i=0; i<nStrates; i++){
