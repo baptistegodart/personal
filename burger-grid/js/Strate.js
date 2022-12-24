@@ -15,18 +15,23 @@ const sTypes = {
 
 class Strate {
     constructor(i, type) {
-        this.x = 0
-        this.y = 0
         this.width = 0
-        this.height = 0
+        this.height = this.setStrateHeight(i)
 
-        // this.xOffset = random(-30, 30)
-        this.xOffset = 0
+        this.x = 0
+        this.y = this.setPosY()
+
+        this.xOffset = random(-30, 30)
+        // this.xOffset = 0
         this.corners = {
             topLeft : 5,
             topRight : 5,
             bottomRight : 5,
             bottomLeft: 5
+            // topLeft : 0,
+            // topRight : 0,
+            // bottomRight : 0,
+            // bottomLeft: 0
         }
 
         this.currState = sStates.FALLING;
@@ -72,19 +77,22 @@ class Strate {
 
         this.easingPosY = new Easing({
             duration: 500,
-            from: -height/nStrates,
+            from: -this.height,
+            to: this.y,
             easing: EASINGS.easeInQuad
         })
 
         this.easingWidth = new Easing({
             duration: 100,
             from: width/widthRatio,
+            to: width/widthRatio + 20,
             easing: EASINGS.easeOutCubic
         })
 
         this.easingHeight = new Easing({
-            duration: 150,
-            from: height/nStrates + 20,
+            duration: 50,
+            from: this.height + 5,
+            to: this.height,
             easing: EASINGS.easeOutCubic
         })
 
@@ -112,7 +120,7 @@ class Strate {
         switch(type){
 
             case bread:
-                const selectedBread = index == nStrates-1 ? sTypes.BOTTOM_BREAD : sTypes.TOP_BREAD
+                const selectedBread = index == nStrates-1 ? sTypes.TOP_BREAD : sTypes.BOTTOM_BREAD
                 selectedType = selectedBread // this.types.BREAD
             break;
 
@@ -128,6 +136,32 @@ class Strate {
         return selectedType
     }
 
+    setStrateHeight(index){
+
+            let strateHeight
     
+            if(index == nStrates-1){
+                const totalStrateHeights = height - strates[index-1].y
+                strateHeight = height - totalStrateHeights
+            }else{
+                strateHeight = height/nStrates + random(-40, 25)
+            }
+    
+            return strateHeight
+            
+    }
+
+    setPosY(){
+
+        let posY = height
+
+            for(let i = 0; i<strates.length; i++){
+                posY = posY - strates[i].height
+            }
+            posY = posY - this.height
+
+        return posY
+        
+    }
 
 }
