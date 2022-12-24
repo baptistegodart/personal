@@ -1,7 +1,6 @@
 const sStates = {
     FALLING:1,
-    DROPED:2,
-    STOP:3
+    DROPED:2
 }
 
 const sTypes = {
@@ -20,8 +19,7 @@ class Strate {
         this.width = 0
         this.height = 0
 
-        // this.xOffset = random(-30, 30)
-        this.xOffset = 0
+        this.xOffset = random(-30, 30)
         this.corners = {
             topLeft : 5,
             topRight : 5,
@@ -73,19 +71,7 @@ class Strate {
         this.easingPosY = new Easing({
             duration: 500,
             from: -height/nStrates,
-            easing: EASINGS.easeInQuad
-        })
-
-        this.easingWidth = new Easing({
-            duration: 100,
-            from: width/widthRatio,
-            easing: EASINGS.easeOutCubic
-        })
-
-        this.easingHeight = new Easing({
-            duration: 150,
-            from: height/nStrates + 20,
-            easing: EASINGS.easeOutCubic
+            easing: EASINGS.easeInCubic
         })
 
     }
@@ -112,7 +98,7 @@ class Strate {
         switch(type){
 
             case bread:
-                const selectedBread = index == nStrates-1 ? sTypes.BOTTOM_BREAD : sTypes.TOP_BREAD
+                const selectedBread = index == nStrates-1 ? sTypes.TOP_BREAD : sTypes.BOTTOM_BREAD
                 selectedType = selectedBread // this.types.BREAD
             break;
 

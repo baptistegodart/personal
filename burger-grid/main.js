@@ -3,7 +3,7 @@
 let credit = `Code by :
 www.baptistegodart.ch`
 
-let nStrates = 7 // ! Include top & bottom bun
+let nStrates = 8 // ! Include top & bottom bun
 let widthRatio = 2 // Strates width = width/widthRatio
 
 let strates = []
@@ -24,9 +24,55 @@ function setup() {
     createCanvas(windowWidth, windowHeight)
 
     angleMode(DEGREES)
-    rectMode(CENTER)
+    // rectMode(CENTER)
 
-    // initStrate()
+    initStrate()
+    // translate(width/(2*widthRatio), height/nStrates/2)
+    // drawGrid()
+
+    let strateHeights = []
+
+    // for(let i=0; i<strateCounter; i++){
+    for(let i=0; i<nStrates; i++){
+
+        let offsetY = 0
+        let strateHeight
+
+        let posY = 0
+
+        for(let i = 0; i<strateHeights.length; i ++){
+            offsetY = offsetY + strateHeights[i]
+        }
+
+        if(i+1 == nStrates){
+            strateHeight = height - offsetY
+        }else{
+            strateHeight = height/nStrates + random(-25, 25)
+        }
+
+        strateHeights.push(strateHeight)
+
+        // console.log(offsetY - strateHeights[strateHeights.length -1], "+");
+        // console.log(strateHeights[i], "=", offsetY, height);
+
+
+
+        posY = offsetY
+
+        // const easingValue = strates[i].easingPosY.update(deltaTime)
+        // const easingWidth = strates[i].easingWidth.update(deltaTime)
+        // const easingHeight = strates[i].easingHeight.update(deltaTime)
+        
+        const strateWidth = width/widthRatio
+        // const strateHeight = height/nStrates
+        
+        const posX = width/2 - strateWidth/2
+        // const posY = height - ((i + 1) * strateHeight)
+        // const posY = strates[i].currState == sStates.FALLING ? easingValue - easingHeight/4 : height - (i+1)*strateHeight
+
+        drawBurger(posX, posY, strateWidth, strateHeight, i)
+
+    }
 
 }
 
@@ -36,46 +82,57 @@ function windowResized() {
 
 function draw() {
 
-    background(255)
+    // background(255)
     noStroke()
     
-    translate(width/(2*widthRatio), height/nStrates/2)
-    drawGrid()
-
-    for(let i=0; i<strateCounter; i++){
-    // for(let i=0; i<nStrates; i++){
-
-        const easingValue = strates[i].easingPosY.update(deltaTime)
-        
-        const strateWidth = width/widthRatio
-        const strateHeight = height/nStrates
-        
-        const posX = width/2 - strateWidth/2
-        // const posY = height - ((i + 1) * strateHeight)
-        const posY = strates[i].currState == sStates.FALLING ? easingValue : height - (i+1)*strateHeight
-
-        drawBurger(posX, posY, strateWidth, strateHeight, i)
-
-    }
+    // translate(width/(2*widthRatio), height/nStrates/2)
+    
+    
 
 }
 
 function drawGrid() {
-
+    let strateHeights = []
+    
     for(let i=0; i<nStrates; i++){
+        
+        let offsetY = 0
+        let strateHeight
 
-        const strateHeight = height/nStrates
+        let posY = 0
+
+        for(let i = 0; i<strateHeights.length; i ++){
+            offsetY = offsetY + strateHeights[i]
+        }
+
+        if(i+1 == nStrates){
+            strateHeight = height - offsetY
+        }else{
+            strateHeight = height/nStrates + random(-10, 10)
+        }
+
+        strateHeights.push(strateHeight)
+
         const posX = 0
-        const posY = i*strateHeight
+
+        // console.log(offsetY - strateHeights[strateHeights.length -1], "+");
+        // console.log(strateHeights[i], "=", offsetY, height);
+
+
+
+        posY = offsetY
+
+        // console.log(posY);
+
 
         push()
         stroke(0)
-        noFill()
+        fill(255/(i+2))
         rect(posX, posY, width*2, strateHeight)
         pop()
 
     }
-    
+    console.log(strateHeights);
 }
 
 function initStrate() {
@@ -98,7 +155,6 @@ function drawBurger(x, y, w, h, index) {
 }
 
 function mouseClicked() {
-
     const firstStrate = strates.length > 0 ? false : true
     let lastStratDroped
 
@@ -124,6 +180,12 @@ function mouseClicked() {
 
         strates[strateCounter].easingPosY.onEnd = function () {
             strates[strateCounter-1].currState = sStates.DROPED
+            strates[strateCounter-1].easingWidth.start({
+                to: width/widthRatio + 20,
+            })
+            strates[strateCounter-1].easingHeight.start({
+                to: height/nStrates,
+            })
         }
     
         strateCounter++
