@@ -1,7 +1,7 @@
 class Picture {
-    constructor(x, y, width, height, src, i) {
+    constructor(width, height, src, i) {
       this.x = random(0, innerWidth - width/2)
-      this.y = random(0, innerHeight)
+      this.y = random(0, innerHeight*2)
       this.width = map(i, 0, 20, 500, 80)
       this.height = height
       this.ogOpacity = map(i, 0, 20, 10, 255) // 0 - 255

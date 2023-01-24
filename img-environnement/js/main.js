@@ -3,13 +3,13 @@
 let pictures = []
 
 function setup() {
-    createCanvas(windowWidth, windowHeight)
+    createCanvas(windowWidth, windowHeight*2)
     angleMode(DEGREES)
     rectMode(CENTER)
     showCredits()
     
-    for(let i = 0; i < 20; i++){
-        const picture = new Picture(random(0, width), random(30, height), random(80, 500), random(80, 500), '/assets/abstract.jpeg', i)
+    for(let i = 0; i < 25; i++){
+        const picture = new Picture(random(80, 500), random(80, 500), '/assets/abstract.jpeg', i)
 
         pictures.push(picture)
     }

@@ -37,18 +37,35 @@ canvas {
   display: block;
 }
 
+#txt{
+  position: absolute;
+  top: 35vh;
+  width: 96vw;
+  padding: 2vw;
+}
+
 h1{
   font-family: pp;
-  position: absolute;
-  top: 30vh;
   font-size: 10vw;
-  /* line-height: 0; */
-  width: 100vw;
+  line-height: 0;
   text-align: center;
   /* color: white; */
+}
+
+p{
+  color: rgb(29, 74, 113);
+  width: 50vw;
+  margin: 0 auto;
+  font-family: pp;
+  text-align: center;
+  font-size: 2vw;
 }
 
 h1:hover{
   transform: scale(1.2, 0.8);
   transition: all 1s ease;
+}
+h1:not(hover){
+  transform: scale(1);
+  transition: all 0.5s ease;
 }
