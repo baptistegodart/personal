@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'cute';
+  src: url('/assets/fonts/CuteFont-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'furphy';
+  src: url('/assets/fonts/FURPHY\ Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'pp';
+  src: url('/assets/fonts/PPMondwest-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'huk';
+  src: url('/assets/fonts/Huk-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  color: rgba(29, 74, 113, 0.457);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+h1{
+  font-family: pp;
+  position: absolute;
+  top: 30vh;
+  font-size: 10vw;
+  /* line-height: 0; */
+  width: 100vw;
+  text-align: center;
+  /* color: white; */
+}
+
+h1:hover{
+  transform: scale(1.2, 0.8);
+  transition: all 1s ease;
+}
